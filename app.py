@@ -27,7 +27,7 @@ def plot_taraf_map(min_year = 0, max_year = 400):
   filtered = geodf[(geodf['Year'] >= min_year) & (geodf['Year'] <= max_year)]
   temp = filtered[['City', 'Taraf']].groupby('City').sum().join(filtered[['City', 'Coordinates']].set_index('City'))
   filtered = geopandas.GeoDataFrame(temp, geometry= 'Coordinates').reset_index()
-  fig = px.density_mapbox(data_frame = filtered, lat = filtered.geometry.y, lon = filtered.geometry.x,z = filtered.Taraf, title = 'Number of Tarafs in Place', opacity = .7)
+  fig = px.density_mapbox(data_frame = filtered, lat = filtered.geometry.y, lon = filtered.geometry.x,z = filtered.Taraf, title = 'Number of Tarafs in Place', opacity = .5, zoom = 0)
   fig.update_layout(title_font_color = 'red', title_x = .5, mapbox_style="stamen-terrain")
   return fig
 
